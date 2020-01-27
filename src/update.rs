@@ -1,6 +1,6 @@
 use serde_json::to_string_pretty;
 use std::error::Error;
-use std::fs::OpenOptions;
+use std::fs::{OpenOptions, create_dir_all};
 use std::io::{BufWriter, Write};
 use std::path::Path;
 use std::process::Command;
@@ -17,6 +17,7 @@ fn write_snapshot(
     option: &UpdateOption,
 ) -> Result<usize, Box<dyn Error>> {
     let json = to_string_pretty(snapshot)?;
+    create_dir_all(option.snapshot_dest_path)?;
     let mut buffer = BufWriter::new(
         OpenOptions::new().write(true).create(true).open(
             option
