@@ -1,6 +1,6 @@
 #!/usr/bin/env zunit
 
 @test 'superimpose foo ls -al' {
-  run superimpose
+  run superimpose foo -- ls -al
   assert $state equals 0
 }
