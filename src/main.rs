@@ -1,3 +1,4 @@
+use std::env::var;
 use clap::{App, Arg};
 fn main() {
     let matches = App::new("superimpose")
@@ -13,4 +14,14 @@ fn main() {
         .get_matches();
     let command: Vec<_> = matches.values_of("command").unwrap().collect();
     let snapshot_key: String = matches.values_of("key").unwrap().collect();
+
+    let is_update_snapshot = match var("SUPERIMPOSE_UPDATE_SNAPSHOT") {
+        Ok(_) => true,
+        Err(_) => false
+    };
+
+    let snapshot_path = match var("SUPERIMPOSE_SNAPHSHOT_PATH") {
+        Ok(p) => p,
+        _ => String::from("./snapshots")
+    };
 }
