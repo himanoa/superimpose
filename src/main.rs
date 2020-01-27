@@ -26,7 +26,7 @@ fn main() -> Result<(), Box<dyn Error>> {
         .get_matches();
     let command: Vec<_> = matches.values_of("command").unwrap().collect();
     let snapshot_key: String = matches.values_of("key").unwrap().collect();
-    let snapshot_path = match var("SUPERIMPOSE_SNAPHSHOT_PATH") {
+    let snapshot_path = match var("SUPERIMPOSE_SNAPSHOT_PATH") {
         Ok(p) => p,
         _ => String::from("./snapshots"),
     };
