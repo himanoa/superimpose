@@ -1,0 +1,3 @@
+[submodule "bin/zunit"]
+	path = bin/zunit
+	url = git@github.com:zunit-zsh/zunit.git
