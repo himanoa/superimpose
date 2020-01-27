@@ -1,4 +1,4 @@
-# superimpose
+# superimpose[WIP]
 
 Superimpose is snapshot test helper for command execution result.
 
