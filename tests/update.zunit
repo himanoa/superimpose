@@ -13,6 +13,14 @@
   assert $state equals 0
 }
 
+@test 'SUPERIMPOSE_UPDATE_SNAPSHOT=1 SUPERIMPOSE_SNAPSHOT_PATH=./foo superimpose foo -- ls -al' {
+  run SUPERIMPOSE_UPDATE_SNAPSHOT=1 SUPERIMPOSE_SNAPSHOT_PATH=foo superimpose foo -- ls -al
+
+  assert $state equals 0
+  run ls foo/foo.json
+  assert $state equals 0
+}
+
 @teardown {
     rm -rf $TEMP
 }
