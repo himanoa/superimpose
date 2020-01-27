@@ -1,0 +1,18 @@
+#!/usr/bin/env zunit
+
+@setup {
+  TEMP=$(mktemp -d)
+  pushd $TEMP
+}
+
+@test 'SUPERIMPOSE_UPDATE_SNAPSHOT=1 superimpose foo -- ls -al' {
+  run SUPERIMPOSE_UPDATE_SNAPSHOT=1 superimpose foo -- ls -al
+
+  assert $state equals 0
+  run ls snapshots/foo.json
+  assert $state equals 0
+}
+
+@teardown {
+    rm -rf $TEMP
+}
